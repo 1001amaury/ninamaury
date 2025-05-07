@@ -9,7 +9,7 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -23,14 +23,15 @@
     h1 {
       font-family: 'Inter', sans-serif;
       font-weight: 900;
-      font-size: 8rem; /* Augmenté la taille de la police */
+      font-size: 6rem;
       margin: 0;
     }
 
     #countdown {
-      font-size: 1.5rem;
+      font-size: 2.8rem;
       color: #555;
       letter-spacing: 2px;
+      margin-top: -20px;
     }
 
     .coords {
@@ -41,10 +42,10 @@
 
     @media (max-width: 600px) {
       h1 {
-        font-size: 5rem; /* Réduire un peu sur mobile */
+        font-size: 4.5rem;
       }
       #countdown {
-        font-size: 1.2rem;
+        font-size: 2rem;
       }
     }
   </style>
@@ -63,7 +64,7 @@
       const diff = targetDate - now;
 
       if (diff <= 0) {
-        countdown.textContent = "viens on s'aime ❤️";
+        countdown.textContent = "viens on s'aime ❤️"; // Pas d'entités HTML malformées
         return;
       }
 
@@ -73,7 +74,7 @@
       const seconds = Math.floor((diff / 1000) % 60);
 
       countdown.innerHTML = `
-        ${days}D ${hours}H ${minutes}M ${seconds}S
+        ${days}J ${hours}H ${minutes}M ${seconds}S
       `;
     }
 
@@ -82,4 +83,3 @@
   </script>
 </body>
 </html>
-
