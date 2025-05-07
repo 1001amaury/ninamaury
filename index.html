@@ -28,7 +28,7 @@
     }
 
     #countdown {
-      font-size: 2.8rem;
+      font-size: 2rem; /* Taille réduite du countdown */
       color: #555;
       letter-spacing: 2px;
       margin-top: -20px;
@@ -45,7 +45,7 @@
         font-size: 4.5rem;
       }
       #countdown {
-        font-size: 2rem;
+        font-size: 1.5rem; /* Taille encore plus petite pour mobile */
       }
     }
   </style>
@@ -64,7 +64,7 @@
       const diff = targetDate - now;
 
       if (diff <= 0) {
-        countdown.textContent = "viens on s'aime ❤️"; // Pas d'entités HTML malformées
+        countdown.textContent = "viens on s'aime ❤️"; 
         return;
       }
 
@@ -83,3 +83,4 @@
   </script>
 </body>
 </html>
+
