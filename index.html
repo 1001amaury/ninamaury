@@ -5,8 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Je t'aime</title>
 
-  <!-- Ajout du favicon PNG -->
+  <!-- Favicon PNG -->
   <link rel="icon" href="favicon.png" type="image/png">
+
+  <!-- Balises Open Graph pour la prévisualisation de lien -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Je t'aime">
+  <meta property="og:description" content="Un site pour afficher un compte à rebours spécial.">
+  <meta property="og:url" content="https://tonsite.com"> <!-- Remplace par ton URL -->
+  <meta property="og:image" content="favicon.png"> <!-- L'image à afficher, ici le favicon -->
+
+  <!-- Balises Twitter Card pour la prévisualisation de lien sur Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Je t'aime">
+  <meta name="twitter:description" content="Un site pour afficher un compte à rebours spécial.">
+  <meta name="twitter:image" content="favicon.png"> <!-- L'image à afficher sur Twitter -->
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap" rel="stylesheet">
   <style>
@@ -28,20 +41,20 @@
       font-family: 'Inter', sans-serif;
       font-weight: 900;
       font-size: 6rem;
-      margin: 0; /* Enlever les marges pour rapprocher le texte */
+      margin: 0;
     }
 
     #countdown {
-      font-size: 2rem; /* Taille réduite du countdown */
+      font-size: 2rem;
       color: #555;
       letter-spacing: 2px;
-      margin-top: 0px; /* Remonté légèrement */
+      margin-top: 0px;
     }
 
     .coords {
       font-weight: bold;
       font-size: 1rem;
-      margin-top: 2px; /* Espacement des coordonnées réduit */
+      margin-top: 2px;
     }
 
     @media (max-width: 600px) {
