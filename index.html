@@ -12,16 +12,17 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Je t'aime">
   <meta property="og:description" content="Un site pour afficher un compte à rebours spécial.">
-  <meta property="og:url" content="https://ninamaury.fr"> <!-- Ton URL -->
-  <meta property="og:image" content="favicon.png"> <!-- L'image à afficher, ici le favicon -->
+  <meta property="og:url" content="https://ninamaury.fr">
+  <meta property="og:image" content="favicon.png">
 
-  <!-- Balises Twitter Card pour la prévisualisation de lien sur Twitter -->
+  <!-- Balises Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Je t'aime">
   <meta name="twitter:description" content="Un site pour afficher un compte à rebours spécial.">
-  <meta name="twitter:image" content="favicon.png"> <!-- L'image à afficher sur Twitter -->
+  <meta name="twitter:image" content="favicon.png">
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
@@ -35,6 +36,7 @@
       background-color: white;
       color: black;
       text-align: center;
+      gap: 0; /* Tu peux ajuster si tu veux ajouter des espacements entre les éléments */
     }
 
     h1 {
@@ -49,6 +51,8 @@
       color: #555;
       letter-spacing: 2px;
       margin-top: 0px;
+      position: relative;
+      top: -20px; /* remonte le countdown */
     }
 
     .coords {
@@ -93,9 +97,7 @@
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
 
-      countdown.innerHTML = `
-        ${days}J ${hours}H ${minutes}M ${seconds}S
-      `;
+      countdown.innerHTML = `${days}J ${hours}H ${minutes}M ${seconds}S`;
     }
 
     updateCountdown();
