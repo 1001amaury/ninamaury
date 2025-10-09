@@ -1,72 +1,81 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Je t'aime</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.jpg">
+  <link rel="shortcut icon" href="favicon.jpg" type="image/jpeg">
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
+
+    * {
       margin: 0;
-      padding: 0 8vw; /* espace latéral pour les petits écrans */
-      height: 100vh;
-      background-color: #000;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      font-family: 'Montserrat', sans-serif;
-      text-align: center;
+      padding: 0;
       box-sizing: border-box;
     }
 
-    h1 {
-      font-weight: 800;
-      font-size: clamp(2rem, 6vw, 3rem); /* adaptable selon taille d'écran */
-      margin: 0 0 8px 0;
-    }
-
-    .subtitle {
-      font-weight: 600;
-      font-size: clamp(0.9rem, 3.5vw, 1rem);
-      color: #bbb;
-      margin: 0 0 20px 0;
-    }
-
-    .details {
-      font-weight: 600;
-      font-size: clamp(1rem, 4vw, 1.3rem);
-      line-height: 1.4;
+    body {
+      background: #000;
       color: #fff;
-      white-space: pre-line;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+      padding: 50px 10px 0 10px;
     }
 
-    @media (max-height: 600px) {
-      body {
-        padding: 0 6vw;
+    .text-main {
+      font-size: clamp(3rem, 10vw, 8rem);
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .image-container {
+      width: 100%;
+      max-width: 500px;
+      flex-shrink: 0;
+      margin-bottom: 5px;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .text-sub {
+      font-size: clamp(0.8rem, 3vw, 1rem);
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    @media(min-width: 768px) {
+      .text-main {
+        font-size: 10vw;
       }
-      .details {
-        font-size: 1rem;
+
+      .image-container {
+        max-width: 800px;
+      }
+
+      .text-sub {
+        font-size: 1.3rem;
       }
     }
   </style>
 </head>
 <body>
-  <h1>ça fait un an.</h1>
-  <p class="subtitle">alors, viens on s'aime</p>
-  <p class="details">
-1 an.  
-365 jours.  
-8760 heures.  
-525600 minutes.  
-31536000 secondes.  
-ou 171 391 fois "we fell in love in october".  
+  <div class="text-main">Je t’aime</div>
 
-Autant de temps à penser à toi et à faire vivre notre amour.
+  <div class="image-container">
+    <img src="octobre2024.png" alt="Octobre 2024">
+  </div>
 
-Aujourd'hui c'est notre jour.  
-Compte sur moi pour le rendre mémorable.
-  </p>
-</body>
+  <div class="text-sub">48°52'05.9"N 2°20'36.4"E</div>
+body>
 </html>
