@@ -5,16 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Je t'aime</title>
   <link rel="icon" href="favicon.jpg">
-  <link rel="shortcut icon" href="favicon.jpg" type="image/jpeg">
-
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       background: #fff;
@@ -23,62 +17,56 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px 10px 20px;
+      padding: 40px 10px;
       text-align: center;
     }
 
     .text-main {
       font-size: clamp(2.5rem, 12vw, 6rem);
       font-weight: 800;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
-    .image-container {
+    .wrapper-3d {
+      perspective: 1200px;
       width: 100%;
       max-width: 500px;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
-    .image-container img {
+    .tilt {
       width: 100%;
-      border-radius: 12px;
-      display: block;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      transform-style: preserve-3d;
+      transition: transform 0.15s ease-out;
     }
 
-    /* Cadre même taille que l’image */
+    .tilt img, .tilt .mystery-box {
+      width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+
     .mystery-box {
-      width: 100%;
-      max-width: 500px;
-      aspect-ratio: 1 / 1; /* même forme visuelle si image carré-ish */
       background: #000;
-      border-radius: 12px;
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: clamp(3rem, 18vw, 8rem);
-      font-weight: 800;
+      align-items: center;
       color: #fff;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 22px rgba(0,0,0,0.28);
+      font-weight: 800;
+      font-size: clamp(3rem, 18vw, 7rem);
+      margin-top: 30px;
+      aspect-ratio: 1 / 1;
     }
 
     .text-sub {
       font-size: clamp(0.9rem, 3vw, 1.2rem);
-      margin-top: 10px;
-      line-height: 1.4;
+      margin-top: 15px;
+      opacity: 0.8;
     }
 
     @media(min-width: 768px) {
-      body {
-        padding-top: 60px;
-      }
-      .image-container {
-        max-width: 800px;
-      }
-      .mystery-box {
-        max-width: 800px;
-      }
+      .wrapper-3d { max-width: 800px; }
+      .tilt img, .tilt .mystery-box { box-shadow: 0 15px 35px rgba(0,0,0,0.28); }
     }
   </style>
 </head>
@@ -87,13 +75,57 @@
 
   <div class="text-main">Je t’aime</div>
 
-  <div class="image-container">
-    <img src="octobre2024.png" alt="Octobre 2024">
+  <!-- IMAGE EN 3D -->
+  <div class="wrapper-3d">
+    <div class="tilt" id="tilt1">
+      <img src="octobre2024.png" alt="Octobre 2024">
+    </div>
   </div>
 
-  <div class="mystery-box">?</div>
+  <!-- CADRE EN 3D -->
+  <div class="wrapper-3d">
+    <div class="tilt" id="tilt2">
+      <div class="mystery-box">?</div>
+    </div>
+  </div>
 
   <div class="text-sub">48°52'05.9"N 2°20'36.4"E</div>
+
+
+  <!-- SCRIPT EFFET 3D -->
+  <script>
+    function enable3D(id) {
+      const card = document.getElementById(id);
+
+      function rotate(x, y, rect){
+        const rotateX = ((y - rect.top) - rect.height/2) / 20;
+        const rotateY = ((x - rect.left) - rect.width/2) / -20;
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+      }
+
+      // Souris
+      card.addEventListener("mousemove", e => {
+        rotate(e.clientX, e.clientY, card.getBoundingClientRect());
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+      });
+
+      // Mobile
+      card.addEventListener("touchmove", e => {
+        const touch = e.touches[0];
+        rotate(touch.clientX, touch.clientY, card.getBoundingClientRect());
+      });
+
+      card.addEventListener("touchend", () => {
+        card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+      });
+    }
+
+    enable3D("tilt1");
+    enable3D("tilt2");
+  </script>
 
 </body>
 </html>
