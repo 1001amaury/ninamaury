@@ -6,6 +6,7 @@
   <title>Je t'aime</title>
   <link rel="icon" href="favicon.jpg">
   <link rel="shortcut icon" href="favicon.jpg" type="image/jpeg">
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
 
@@ -16,90 +17,83 @@
     }
 
     body {
-      background: #000;
-      color: #fff;
+      background: #fff;
+      color: #000;
       font-family: 'Montserrat', sans-serif;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
-      justify-content: flex-start;
       align-items: center;
+      padding: 40px 10px 20px;
       text-align: center;
-      padding: 50px 10px 0 10px;
     }
 
     .text-main {
-      font-size: clamp(3rem, 10vw, 8rem);
+      font-size: clamp(2.5rem, 12vw, 6rem);
       font-weight: 800;
-      margin-bottom: 5px;
+      margin-bottom: 20px;
     }
 
     .image-container {
       width: 100%;
       max-width: 500px;
-      flex-shrink: 0;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
     .image-container img {
       width: 100%;
-      height: auto;
-      border-radius: 10px;
+      border-radius: 12px;
       display: block;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
     }
 
-    /* Cadre noir avec "?" */
+    /* Cadre même taille que l’image */
     .mystery-box {
       width: 100%;
       max-width: 500px;
-      height: 120px;
-      border: 2px solid #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 4rem;
-      font-weight: 800;
-      margin-top: 5px;
+      aspect-ratio: 1 / 1; /* même forme visuelle si image carré-ish */
+      background: #000;
       border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(3rem, 18vw, 8rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.28);
     }
 
     .text-sub {
-      font-size: clamp(0.8rem, 3vw, 1rem);
+      font-size: clamp(0.9rem, 3vw, 1.2rem);
       margin-top: 10px;
       line-height: 1.4;
     }
 
     @media(min-width: 768px) {
-      .text-main {
-        font-size: 10vw;
+      body {
+        padding-top: 60px;
       }
-
       .image-container {
         max-width: 800px;
       }
-
       .mystery-box {
         max-width: 800px;
-        height: 150px;
-        font-size: 5rem;
-      }
-
-      .text-sub {
-        font-size: 1.3rem;
       }
     }
   </style>
 </head>
+
 <body>
+
   <div class="text-main">Je t’aime</div>
 
   <div class="image-container">
     <img src="octobre2024.png" alt="Octobre 2024">
   </div>
 
-  <!-- Cadre noir + "?" -->
   <div class="mystery-box">?</div>
 
   <div class="text-sub">48°52'05.9"N 2°20'36.4"E</div>
-<body>
+
+</body>
 </html>
