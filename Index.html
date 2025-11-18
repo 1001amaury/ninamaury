@@ -10,16 +10,13 @@
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* --------- CONTENEUR GLOBAL --------- */
     #siteContent {
       transition: filter 0.3s ease;
     }
 
-    /* on floute SEULEMENT CE DIV (pas le body) */
     #siteContent.locked {
       filter: blur(12px);
       pointer-events: none;
-      user-select: none;
     }
 
     body {
@@ -33,7 +30,7 @@
       text-align: center;
     }
 
-    /* --------- OVERLAY MDP --------- */
+    /* -------- OVERLAY -------- */
     #passwordOverlay {
       position: fixed;
       inset: 0;
@@ -41,13 +38,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 99999999;
+      z-index: 999999;
     }
 
     #passwordBox {
       background: #000;
       color: #fff;
-      padding: 30px 25px;
+      padding: 30px;
       border-radius: 14px;
       width: 85%;
       max-width: 380px;
@@ -55,7 +52,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
 
-    #passwordBox input {
+    #passwordInput {
       width: 100%;
       padding: 12px;
       border-radius: 10px;
@@ -70,17 +67,13 @@
       margin-top: 15px;
       width: 100%;
       padding: 12px;
-      border: none;
       border-radius: 10px;
+      border: none;
       background: #fff;
       color: #000;
       font-weight: 700;
-      font-size: 1rem;
       cursor: pointer;
-      transition: 0.2s;
     }
-
-    #passwordButton:hover { opacity: 0.85; }
 
     #passwordError {
       color: #ff5b5b;
@@ -101,16 +94,17 @@
       width: 100%;
       border-radius: 14px;
       display: block;
+      background: none;
       box-shadow: 0 10px 25px rgba(0,0,0,0.22);
     }
 
-    /* -------- CADRE FLIP -------- */
+    /* -------- CADRE -------- */
     .flip-wrapper {
-      perspective: 1600px;
       width: 100%;
       max-width: 500px;
+      height: 180px;
       margin-top: 25px;
-      aspect-ratio: 1 / 0.45;
+      perspective: 1400px;
     }
 
     .flip-card {
@@ -118,31 +112,35 @@
       height: 100%;
       position: relative;
       transform-style: preserve-3d;
-      transition: transform 0.55s cubic-bezier(.25,.8,.25,1);
+      transition: transform 0.6s ease;
       cursor: pointer;
     }
 
     .flip-card.flipped {
-      transform: rotateY(85deg) rotateX(12deg);
+      transform: rotateY(180deg);
     }
 
     .face {
       position: absolute;
       inset: 0;
-      border-radius: 14px;
+      backface-visibility: hidden;
       background: #000;
       color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      font-size: clamp(1.2rem, 5.5vw, 2.2rem);
-      font-weight: 800;
-      text-align: center;
-      word-break: break-word;
-      line-height: 1.25;
+      border-radius: 14px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-      backface-visibility: hidden;
+      padding: 25px;
+      font-size: 40px;
+      font-weight: 800;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+
+    .back {
+      transform: rotateY(180deg);
     }
 
     .text-sub {
@@ -153,32 +151,32 @@
   </style>
 </head>
 
-<!-- OVERLAY MDP (NE PAS METTRE DANS LE BODY) -->
+<!-- OVERLAY -->
 <div id="passwordOverlay">
   <div id="passwordBox">
-    <div style="font-size:1.5rem; font-weight:800;">Mot de passe</div>
+    <div style="font-size:1.5rem;font-weight:800;">Mot de passe</div>
 
-    <input type="password" id="passwordInput" placeholder="Entre le mot de passe">
+    <input id="passwordInput" type="password" placeholder="Entre le mot de passe">
     <button id="passwordButton">Valider</button>
-
     <div id="passwordError">Mot de passe incorrect</div>
   </div>
 </div>
 
 <body>
 
-<!-- CONTENU FLOU ICI -->
 <div id="siteContent" class="locked">
 
   <div class="text-main">Je t’aime</div>
 
   <div class="wrapper-3d">
-    <img src="octobre2024.png" alt="Octobre 2024">
+    <img src="octobre2024.png" alt="">
   </div>
 
+  <!-- FLIP -->
   <div class="flip-wrapper">
     <div class="flip-card" id="flip">
-      <div class="face" id="faceText">?</div>
+      <div class="face front">?</div>
+      <div class="face back" id="faceBack">?</div>
     </div>
   </div>
 
@@ -187,83 +185,68 @@
 </div>
 
 <script>
-  /* ---------- MOT DE PASSE ---------- */
-  const overlay = document.getElementById("passwordOverlay");
-  const input = document.getElementById("passwordInput");
-  const button = document.getElementById("passwordButton");
-  const errorMsg = document.getElementById("passwordError");
-  const site = document.getElementById("siteContent");
+/* -------- MOT DE PASSE -------- */
+const overlay=document.getElementById("passwordOverlay");
+const input=document.getElementById("passwordInput");
+const button=document.getElementById("passwordButton");
+const errorMsg=document.getElementById("passwordError");
+const site=document.getElementById("siteContent");
 
-  function checkPassword() {
-    if (input.value === "amauryjetaime9") {
-      overlay.style.opacity = "0";
-      overlay.style.pointerEvents = "none";
-      site.classList.remove("locked");
-      setTimeout(() => overlay.remove(), 350);
-    } else {
-      errorMsg.style.display = "block";
-    }
+function checkPassword(){
+  if(input.value==="amauryjetaime9"){
+    overlay.style.opacity="0";
+    overlay.style.pointerEvents="none";
+    site.classList.remove("locked");
+    setTimeout(()=>overlay.remove(),300);
+  } else {
+    errorMsg.style.display="block";
   }
+}
+button.onclick=checkPassword;
+input.onkeyup=e=>{ if(e.key==="Enter") checkPassword(); };
 
-  button.addEventListener("click", checkPassword);
-  input.addEventListener("keyup", e => { if (e.key === "Enter") checkPassword(); });
+/* -------- FLIP -------- */
+const messages=[
+  "Viens on s’aime",
+  "Je sens le vestiaire",
+  "It’s a long story -\nI have time",
+  "Elle viendra un jour de pluie dessiner le soleil",
+  "Pense à nos câlins",
+  "Aussi rassurante que jaja, aussi sexy qu’une vardemir",
+  "Demain tu mets le tee vardemir",
+  "Tu gagnes le droit de m’envoyer une photo sourire",
+  "JE TAIME PETIT CHAT"
+];
 
-  /* ---------- FLIP + TEXT-FIT ---------- */
-  const messages = [
-    "Viens on s’aime",
-    "Je sens le vestiaire",
-    "It’s a long story -\nI have time",
-    "Elle viendra un jour de pluie dessiner le soleil",
-    "Pense à nos câlins",
-    "Aussi rassurante que jaja, aussi sexy qu’une vardemir",
-    "Demain tu mets le tee vardemir",
-    "Tu gagnes le droit de m’envoyer une photo sourire",
-    "JE TAIME PETIT CHAT"
-  ];
+const flip=document.getElementById("flip");
+const back=document.getElementById("faceBack");
 
-  const flip = document.getElementById("flip");
-  const faceText = document.getElementById("faceText");
+/* -------- AUTO-FIT TEXTE -------- */
+function fitBackText() {
+  let size = 42;
+  back.style.fontSize = size + "px";
 
-  let showingText = false;
-  let flipping = false;
+  const box = back.parentElement;
 
-  /* AUTO-RESIZE DU TEXTE */
-  function fitText() {
-    const parent = faceText.parentElement;
-    let size = 40; // taille max
-    faceText.style.fontSize = size + "px";
-
-    while (faceText.scrollHeight > parent.clientHeight - 10 ||
-           faceText.scrollWidth > parent.clientWidth - 10) {
-      size--;
-      faceText.style.fontSize = size + "px";
-      if (size < 10) break; // sécurité
-    }
+  while (
+    back.scrollHeight > box.clientHeight - 30 ||
+    back.scrollWidth > box.clientWidth - 30
+  ) {
+    size -= 2;
+    back.style.fontSize = size + "px";
+    if (size < 12) break;
   }
+}
 
-  flip.addEventListener("click", () => {
-    if (flipping) return;
-    flipping = true;
+flip.addEventListener("click",()=>{
+  if(!flip.classList.contains("flipped")){
+    back.textContent = messages[Math.floor(Math.random()*messages.length)];
+    fitBackText();
+  }
+  flip.classList.toggle("flipped");
+});
 
-    flip.classList.add("flipped");
-
-    setTimeout(() => {
-      faceText.textContent = showingText
-        ? "?"
-        : messages[Math.floor(Math.random() * messages.length)];
-
-      showingText = !showingText;
-
-      /* AJUSTE LA TAILLE DU TEXTE IMMÉDIATEMENT */
-      fitText();
-
-      flip.classList.remove("flipped");
-      flipping = false;
-    }, 300);
-  });
-
-  /* Ajuste aussi si orientation change */
-  window.addEventListener("resize", fitText);
+window.addEventListener("resize", fitBackText);
 </script>
 
 </body>
