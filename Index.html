@@ -172,7 +172,6 @@
     <img src="octobre2024.png" alt="">
   </div>
 
-  <!-- FLIP -->
   <div class="flip-wrapper">
     <div class="flip-card" id="flip">
       <div class="face front">?</div>
@@ -221,20 +220,21 @@ const messages=[
 const flip=document.getElementById("flip");
 const back=document.getElementById("faceBack");
 
-/* -------- AUTO-FIT TEXTE -------- */
+/* -------- TEXT-FIT (un peu plus petit) -------- */
 function fitBackText() {
-  let size = 42;
+  let size = 44;        // légèrement plus petit qu’avant
+  const minSize = 22;   // toujours lisible
   back.style.fontSize = size + "px";
 
   const box = back.parentElement;
 
   while (
-    back.scrollHeight > box.clientHeight - 30 ||
-    back.scrollWidth > box.clientWidth - 30
+    (back.scrollHeight > box.clientHeight - 25 ||
+     back.scrollWidth > box.clientWidth - 25) &&
+    size > minSize
   ) {
-    size -= 2;
+    size -= 1;
     back.style.fontSize = size + "px";
-    if (size < 12) break;
   }
 }
 
